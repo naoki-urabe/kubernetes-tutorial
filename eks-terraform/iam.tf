@@ -21,6 +21,11 @@ resource "aws_iam_role_policy_attachment" "eks-cluster" {
   role       = aws_iam_role.eks-master.name
 }
 
+resource "aws_iam_role_policy_attachment" "eks-service" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+  role       = aws_iam_role.eks-master.name
+}
+
 resource "aws_iam_role" "eks-node" {
   name               = "eks-node-role"
   assume_role_policy = <<POLICY
